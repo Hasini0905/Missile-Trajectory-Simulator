@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missile Trajectory Simulator</title>
+    <link rel="stylesheet" href="leaflet/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css">
+    <!-- Three.js libraries removed due to compatibility issues -->
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1>Missile Trajectory Simulator</h1>
+            <div class="input-section">
+                <label>Latitude: <input type="number" id="manual-lat" step="0.0001" min="-90" max="90" placeholder="Enter latitude"></label><br>
+                <label>Longitude: <input type="number" id="manual-lng" step="0.0001" min="-180" max="180" placeholder="Enter longitude"></label><br>
+                <label>Altitude (m): <input type="number" id="manual-alt" step="100" min="0" placeholder="Enter altitude"></label><br>
+                <button id="add-point-manual">Add Point (Manual)</button>
+                <label>Altitude for Map Point (m): <input type="number" id="map-alt" step="100" min="0" value="0"></label><br>
+                <button id="add-point-map">Add Point (Map)</button>
+                <button id="clear-points">Clear All Points</button>
+            </div>
+            <div class="input-section">
+                <label>Speed (m/s): <input type="number" id="speed-input" step="1" min="1" value="1000"></label>
+            </div>
+            <div class="points-list-section">
+                <h3>Added Points</h3>
+                <div id="points-list"></div>
+            </div>
+            <div class="action-section">
+                <button id="calculate-trajectory">Calculate Trajectory</button>
+                <button id="launch-missile">Launch Missile</button>
+                <div style="margin-top:10px;">
+                    <label>Export Interval: <input type="number" id="export-interval" step="0.1" min="0.1" value="1"></label>
+                    <select id="export-interval-type">
+                        <option value="seconds">Seconds</option>
+                        <option value="metres">Metres</option>
+                    </select>
+                </div>
+                <button id="export-log">Export Logbook (CSV)</button>
+            </div>
+            <div class="info-section">
+                <div>Total Distance: <span id="distance">-</span></div>
+                <div>Travel Time: <span id="travel-time">-</span></div>
+                <div>Initial Bearing: <span id="bearing">-</span></div>
+                <div>Current Position: <span id="current-position">-</span></div>
+                <div>Current Speed: <span id="current-speed">-</span></div>
+                <div>ETA: <span id="eta">-</span></div>
+            </div>
+        </div>
+        <div id="map"></div>
+    </div>
+    <script src="leaflet/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-polylinedecorator/dist/leaflet.polylineDecorator.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
